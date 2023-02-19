@@ -1,0 +1,62 @@
+    * {
+      box-sizing: border-box;
+      background-color: #292325;
+      font-family: Arial;
+      color: #58bccc;
+      text-align: center;
+    }
+
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    body {
+      font-family: Arial;
+      color: #58bccc;
+    }
+
+    img {
+      width: 10%;
+    }
+
+    button {
+      border: 1px solid #58bccc;
+      padding: 5px 10px;
+      text-align: center;
+      border-radius: 10%;
+      cursor: pointer;
+    }
+
+    input {
+      border: 1px solid gray;
+      font-size: 16px;
+    }
+
+    select {
+      border: 1px solid gray;
+      font-size: 16px;
+    }
+
+    .tick {
+      width: 20px;
+      display: none;
+    }
+
+    #regPrediction {
+      font-size: 20px;
+      color: #16c028;
+    }
+
+    #regComparison {
+      font-size: 20px;
+      color: lightgray;
+    }

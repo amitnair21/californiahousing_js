@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <h1>C A L I F O R N I A &nbsp H O U S I N G &nbsp D A T A S E T</h1>
+
+    <hr />
+  </head>
+
+  <br />
+
+  <body>
+    <div class="row">
+      <!-------------------------------------------------------------------------------------------------------------------------->
+
+      <div class="column">
+        <h3>
+          L O A D &nbsp D A T A &nbsp
+          <img
+            class="tick"
+            id="load-tick"
+            src="https://static.vecteezy.com/system/resources/thumbnails/010/153/804/small/tick-icon-sign-symbol-design-free-png.png"
+          />
+        </h3>
+        <input type="file" id="csv-file" accept=".csv" />
+        <br /><br />
+        <button id="confirm">Confirm</button> &nbsp
+
+        <a href="housing.csv" download>
+          <button>Download</button>
+        </a>
+
+        <div id="load-status" style="display: none">
+          <br /><br />
+          Unrecognised dataset
+        </div>
+
+        <br />
+        <br />
+        <hr />
+        <br />
+
+        <!-------------------------------------------------------------------------------------------------------------------------->
+
+        <h3>
+          T R A I N &nbsp M O D E L &nbsp
+          <img
+            class="tick"
+            id="train-tick"
+            src="https://static.vecteezy.com/system/resources/thumbnails/010/153/804/small/tick-icon-sign-symbol-design-free-png.png"
+          />
+        </h3>
+        <br />
+        <div id="train-options" style="display: none">
+          <button id="r1">Linear Regression - 5 Epochs</button>
+          <br /><br />
+          <button id="r2">Linear Regression - 50 Epochs</button>
+          <br /><br />
+          <button id="r3">Linear Regression - 300 Epochs</button>
+          <br /><br />
+          <button id="r4">Linear Regression - 500 Epochs</button>
+          <br /><br />
+          <button id="r5">Linear Regression - 1000 Epochs</button>
+          <br /><br />
+        </div>
+        <img
+          id="train-img"
+          draggable="false"
+          style="width: 30%; display: none"
+          src="https://thumbs.gfycat.com/PepperyMediumBrahmancow-max-1mb.gif"
+        />
+        <div id="train-status">No data loaded</div>
+      </div>
+
+      <!-------------------------------------------------------------------------------------------------------------------------->
+
+      <div class="column">
+        <h3>
+          P E R F O R M &nbsp
+          <img
+            class="tick"
+            id="perform-tick"
+            src="https://static.vecteezy.com/system/resources/thumbnails/010/153/804/small/tick-icon-sign-symbol-design-free-png.png"
+          />
+        </h3>
+        <br />
+
+        <div id="input-r" style="display: none">
+          <button id="randomize">Randomize</button>
+          <br /><br />
+          <button id="compare">Compare</button>
+          <br /><br />
+
+          <form id="regForm">
+            <input
+              placeholder="Longitude"
+              type="number"
+              id="input_long"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Latitude"
+              type="number"
+              id="input_lat"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Housing Median Age"
+              type="number"
+              id="input_hma"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Total Rooms"
+              type="number"
+              id="input_rooms"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Total Bedrooms"
+              type="number"
+              id="input_bedrooms"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Population"
+              type="number"
+              id="input_pop"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Households"
+              type="number"
+              id="input_house"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <input
+              placeholder="Median Income"
+              type="number"
+              id="input_medinc"
+              maxlength="6"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            />
+            <br /><br />
+
+            <select id="ocean-value">
+              <option value="1">Near Bay</option>
+              <option value="2">Inland</option>
+              <option value="3">< 1 Hour to the Ocean</option>
+              <option value="4">Island</option>
+              <option value="5">Near Ocean</option>
+            </select>
+          </form>
+
+          <br /><br /><br />
+
+          <button id="calculate-r">Calculate</button>
+        </div>
+      </div>
+
+      <!-------------------------------------------------------------------------------------------------------------------------->
+
+      <div class="column">
+        <h3>R E S U L T</h3>
+        <br />
+        <img
+          style="width: 60px"
+          src="https://static.vecteezy.com/system/resources/previews/010/156/455/large_2x/eye-icon-sign-symbol-design-free-png.png"
+        />
+        <br /><br /><br />
+
+        <div id="result-panel" style="display: none">
+          <input
+            placeholder="Predicted value"
+            id="regPrediction"
+            type="text"
+            readonly
+          />
+          <br /><br />
+          <input
+            placeholder="Actual value"
+            id="regComparison"
+            type="text"
+            readonly
+          />
+
+          <br /><br /><br /><br />
+
+          <canvas id="TestChart" style="max-width: 100%"></canvas>
+          <br />
+          Test Dataset
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
